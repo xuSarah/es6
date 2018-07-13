@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>H5中标签audio在手机端不能自动播放</title>
+</head>
+<body>
+    <audio id="music" autoplay="true" loop="loop" class="audioMusicBtn media-audio" controls="controls" preload src="images/music.mp3"></audio>
+    <script>
+        function audioAutoPlay(id){
+    　　var audio = document.getElementById(id),
+    　　　　play = function(){
+    　　　　　　audio.play();
+    　　　　　　document.removeEventListener("touchstart",play, false);
+    　　　　};
+        　　audio.play();
+        　　document.addEventListener("WeixinJSBridgeReady", function () {//微信
+        　　　　play();
+        　　}, false);
+        　　document.addEventListener('YixinJSBridgeReady', function() {//易信
+        　　　　play();
+        　　}, false);
+        　　document.addEventListener("touchstart",play, false);
+        }
+        audioAutoPlay('music');
+    </script>
+</body>
+</html>
